@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "name": "Nike Jordan",
+      "image": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/1419ed34-7762-420a-9f2a-2e2a65d5aba9/dunk-low-shoes-kKHp1z.png",
+      "price": 250000,
+      "stock": 3,
+      "id": "1"
+    },
+    {
+      "name": "Puma RS-X",
+      "price": 25000,
+      "stock": 10,
+      "image": "https://placehold.co/396x594",
+      "id": "3"
+    },
+    {
+      "name": "Reebok Classic",
+      "image": "https://placehold.co/396x594",
+      "price": 90000,
+      "stock": 7,
+      "id": "4"
+    },
+    {
+      "name": "New Balance 574",
+      "image": "https://placehold.co/396x594",
+      "price": 110000,
+      "stock": 3,
+      "id": "5"
+    },
+    {
+      "name": "Asics Gel-Kayano",
+      "image": "https://placehold.co/396x594",
+      "price": 160000,
+      "stock": 4,
+      "id": "6"
+    },
+    {
+      "name": "Converse Chuck Taylor",
+      "image": "https://placehold.co/396x594",
+      "price": 70000,
+      "stock": 15,
+      "id": "7"
+    },
+    {
+      "name": "Vans Old Skool",
+      "image": "https://placehold.co/396x594",
+      "price": 75000,
+      "stock": 12,
+      "id": "8"
+    },
+    {
+      "name": "Under Armour HOVR",
+      "image": "https://placehold.co/396x594",
+      "price": 140000,
+      "stock": 8,
+      "id": "9"
+    },
+    {
+      "name": "Saucony Jazz Original",
+      "image": "https://placehold.co/396x594",
+      "price": 95000,
+      "stock": 6,
+      "id": "10"
+    },
+    {
+      "name": "Fila Disruptor",
+      "image": "https://placehold.co/396x594",
+      "price": 85000,
+      "stock": 9,
+      "id": "11"
+    }
+  ]
+}
