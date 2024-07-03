@@ -15,7 +15,7 @@ const SideBarItem = (props) => {
   );
 };
 
-export onst AdminLayout = (props) => {
+export const AdminLayout = (props) => {
   const { title, description, rightSection, children } = props;
   return (
     <div className="flex">
