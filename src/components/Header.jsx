@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 
 export const Header = () => {
   const userSelector = useSelector((state) => state.user);
-  const counterSelector = useSelector((state) => state.counter);
 
   return (
     <header className="flex items-center justify-between px-8 py-4 border-b">
@@ -35,12 +34,16 @@ export const Header = () => {
         <Separator orientation="vertical" className="h-full" />
 
         <div className="flex space-x-2">
-          <Button>Sign In</Button>
-          <Button variant="outline">Sign Up</Button>
-          <div>
-            <p>Hello, {userSelector.username}</p>
-            <p>Counter : {counterSelector.count}</p>
-          </div>
+          {userSelector.username ? (
+            <div>
+              <p>Hello, {userSelector.username}</p>
+            </div>
+          ) : (
+            <>
+              <Button>Sign In</Button>
+              <Button variant="outline">Sign Up</Button>
+            </>
+          )}
         </div>
       </div>
     </header>

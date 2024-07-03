@@ -12,10 +12,49 @@ import ProductManagementPage from "./pages/admin/ProductManagementPage";
 import CreateProductPage from "./pages/admin/CreateProductPage";
 import EditProductPage from "./pages/admin/EditProductPage";
 import CounterPage from "./pages/CounterPage";
+import RegisterPage from "./pages/RegisterPage";
+import { axiosInstance } from "./lib/axios";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { boolean } from "zod";
 
 function App() {
   const location = useLocation();
-  console.log(location.pathname);
+  const dispatch = useDispatch();
+
+  const [loading, isLoading] = useState(true);
+
+  const hydrateAuth = async () => {
+    try {
+      const currentUser = localStorage.getItem("current-user");
+
+      if (!currentUser) return;
+
+      const userResponse = await axiosInstance.get("/users/" + currentUser);
+
+      dispatch({
+        type: "USER_LOGIN",
+        payload: {
+          username: userResponse.data.username,
+          email: userResponse.data.email,
+          id: userResponse.data.id,
+        },
+      });
+    } catch (error) {
+      console.log("🚀 ~ hydrateAuth ~ error:", error);
+    } finally {
+      isLoading(false);
+    }
+  };
+  useEffect(() => {
+    hydrateAuth();
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       {!location.pathname.startsWith("/admin") ? <Header /> : null}
@@ -24,6 +63,7 @@ function App() {
         <Route path="/" Component={HomePage} />
         <Route path="/cart" Component={CartPage} />
         <Route path="/login" Component={LoginPage} />
+        <Route path="/register" Component={RegisterPage} />
         <Route path="/counter" Component={CounterPage} />
         <Route path="/product/:id" Component={ProductDetailPage} />
 

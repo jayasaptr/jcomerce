@@ -25,6 +25,9 @@ import {
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { axiosInstance } from "@/lib/axios";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const loginFormShcema = z.object({
   email: z
@@ -48,24 +51,69 @@ const LoginPage = () => {
 
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleLogin = (values) => {
-    alert(`Email ${values.email} Password ${values.password}`);
+  const dispatch = useDispatch();
+
+  const handleLogin = async (values) => {
+    try {
+      const userResponse = await axiosInstance.get("/users", {
+        params: {
+          email: values.email,
+        },
+      });
+
+      if (userResponse.data.length === 0) {
+        form.setError("email", {
+          type: "manual",
+          message: "Email not found",
+        });
+
+        return;
+      }
+
+      if (userResponse.data.length > 0) {
+        const user = userResponse.data[0];
+        if (user.password !== values.password) {
+          form.setError("password", {
+            type: "manual",
+            message: "Password not match",
+          });
+
+          return;
+        }
+      }
+
+      dispatch({
+        type: "USER_LOGIN",
+        payload: {
+          username: userResponse.data[0].username,
+          email: userResponse.data[0].email,
+          id: userResponse.data[0].id,
+        },
+      });
+
+      localStorage.setItem("current-user", userResponse.data[0].id);
+
+      form.reset();
+    } catch (error) {
+      console.log("🚀 ~ handleLogin ~ error:", error);
+    }
   };
 
   return (
-    <main className='container py-8 flex flex-col justify-center items-center max-w-screen-md h-[80vh]'>
+    <main className="container py-8 flex flex-col justify-center items-center max-w-screen-md h-[80vh]">
       <Form {...form}>
         <form
-          className='w-full max-w-[540px] '
-          onSubmit={form.handleSubmit(handleLogin)}>
+          className="w-full max-w-[540px] "
+          onSubmit={form.handleSubmit(handleLogin)}
+        >
           <Card>
             <CardHeader>
               <CardTitle>Wellcome Back!</CardTitle>
             </CardHeader>
-            <CardContent className='flex flex-col gap-2'>
+            <CardContent className="flex flex-col gap-2">
               <FormField
                 control={form.control}
-                name='email'
+                name="email"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
@@ -80,7 +128,7 @@ const LoginPage = () => {
 
               <FormField
                 control={form.control}
-                name='password'
+                name="password"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Password</FormLabel>
@@ -97,20 +145,20 @@ const LoginPage = () => {
                   </FormItem>
                 )}
               />
-              <div className='flex items-center space-x-2'>
+              <div className="flex items-center space-x-2">
                 <Checkbox
                   onCheckedChange={(checked) => setIsChecked(checked)}
-                  id='show-password'
+                  id="show-password"
                 />
-                <Label htmlFor='show-password'>Show Password</Label>
+                <Label htmlFor="show-password">Show Password</Label>
               </div>
             </CardContent>
             <CardFooter>
-              <div className='flex flex-col space-y-4 w-full'>
-                <Button type='submit'>Login</Button>
-                <Button variant='link' className='w-full'>
+              <div className="flex flex-col space-y-4 w-full">
+                <Button type="submit">Login</Button>
+                <Link className="w-full text-center" to="/register">
                   Register
-                </Button>
+                </Link>
               </div>
             </CardFooter>
           </Card>

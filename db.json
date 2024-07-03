@@ -70,5 +70,13 @@
       "stock": 9,
       "id": "11"
     }
+  ],
+  "users": [
+    {
+      "id": "9cc5",
+      "email": "admin@gmail.com",
+      "username": "Muhammad Jaya Saputra",
+      "password": "12345678"
+    }
   ]
 }
