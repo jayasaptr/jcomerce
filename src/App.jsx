@@ -11,6 +11,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductManagementPage from "./pages/admin/ProductManagementPage";
 import CreateProductPage from "./pages/admin/CreateProductPage";
 import EditProductPage from "./pages/admin/EditProductPage";
+import CounterPage from "./pages/CounterPage";
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" Component={HomePage} />
         <Route path="/cart" Component={CartPage} />
         <Route path="/login" Component={LoginPage} />
+        <Route path="/counter" Component={CounterPage} />
         <Route path="/product/:id" Component={ProductDetailPage} />
 
         <Route path="/admin">
