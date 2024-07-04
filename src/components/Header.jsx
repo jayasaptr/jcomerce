@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { axiosInstance } from "@/lib/axios";
 import { useEffect } from "react";
+import { fetchCart } from "@/services/cartService";
 
 export const Header = () => {
   const userSelector = useSelector((state) => state.user);
@@ -22,26 +23,8 @@ export const Header = () => {
     dispatch({ type: "USER_LOGOUT" });
   };
 
-  const fetchCart = async () => {
-    try {
-      const cartResponse = await axiosInstance.get("/carts", {
-        params: {
-          userId: userSelector.id,
-          _embed: "product",
-        },
-      });
-
-      dispatch({
-        type: "CART_GET",
-        payload: cartResponse.data,
-      });
-    } catch (error) {
-      console.log("🚀 ~ fetchCart ~ error:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchCart();
+    fetchCart(userSelector.id);
   }, []);
 
   return (
@@ -73,9 +56,7 @@ export const Header = () => {
         <div className="flex space-x-2">
           {userSelector.username ? (
             <div className="flex items-center">
-              <p>
-                Hello, {userSelector.username} ({userSelector.role})
-              </p>
+              <p>Hello, {userSelector.username}</p>
               <Button onClick={handleLogout} variant="destructive">
                 Logout
               </Button>

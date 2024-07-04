@@ -5,15 +5,14 @@ import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "@/lib/axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { fetchCart } from "@/services/cartService";
 
 export const ProductCard = (props) => {
   const { image, name, price, stock, id } = props;
   const [quantity, setQuantity] = useState(0);
 
   const userSelector = useSelector((state) => state.user);
-
-  const dispatch = useDispatch();
 
   const addToCart = async () => {
     if (!userSelector.id) {
@@ -53,27 +52,9 @@ export const ProductCard = (props) => {
         });
       }
       alert("Added to cart");
-      fetchCart();
+      fetchCart(userSelector.id);
     } catch (error) {
       console.log("🚀 ~ addToCart ~ error:", error);
-    }
-  };
-
-  const fetchCart = async () => {
-    try {
-      const cartResponse = await axiosInstance.get("/carts", {
-        params: {
-          userId: userSelector.id,
-          _embed: "product",
-        },
-      });
-
-      dispatch({
-        type: "CART_GET",
-        payload: cartResponse.data,
-      });
-    } catch (error) {
-      console.log("🚀 ~ fetchCart ~ error:", error);
     }
   };
 

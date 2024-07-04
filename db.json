@@ -4,13 +4,13 @@
       "name": "Nike Jordan",
       "image": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/1419ed34-7762-420a-9f2a-2e2a65d5aba9/dunk-low-shoes-kKHp1z.png",
       "price": 250000,
-      "stock": 3,
+      "stock": 0,
       "id": "1"
     },
     {
       "name": "Puma RS-X",
       "price": 25000,
-      "stock": 10,
+      "stock": 0,
       "image": "https://placehold.co/396x594",
       "id": "3"
     },
@@ -18,7 +18,7 @@
       "name": "Reebok Classic",
       "image": "https://placehold.co/396x594",
       "price": 90000,
-      "stock": 7,
+      "stock": 0,
       "id": "4"
     },
     {
@@ -32,14 +32,14 @@
       "name": "Asics Gel-Kayano",
       "image": "https://placehold.co/396x594",
       "price": 160000,
-      "stock": 4,
+      "stock": 0,
       "id": "6"
     },
     {
       "name": "Converse Chuck Taylor",
       "image": "https://placehold.co/396x594",
       "price": 70000,
-      "stock": 15,
+      "stock": 5,
       "id": "7"
     },
     {
@@ -87,24 +87,112 @@
       "role": "user"
     }
   ],
-  "carts": [
+  "carts": [],
+  "transaction": [
     {
-      "id": "b595",
+      "id": "ee2d",
       "userId": "274f",
-      "productId": "1",
-      "quantity": 3
+      "total_price": 950000,
+      "tax": 95000,
+      "transaction_date": "2024-07-04T05:07:43.319Z",
+      "items": [
+        {
+          "id": "a662",
+          "userId": "274f",
+          "productId": "3",
+          "quantity": 8,
+          "product": {
+            "name": "Puma RS-X",
+            "price": 25000,
+            "stock": 10,
+            "image": "https://placehold.co/396x594",
+            "id": "3"
+          }
+        },
+        {
+          "id": "002e",
+          "userId": "274f",
+          "productId": "1",
+          "quantity": 3,
+          "product": {
+            "name": "Nike Jordan",
+            "image": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/1419ed34-7762-420a-9f2a-2e2a65d5aba9/dunk-low-shoes-kKHp1z.png",
+            "price": 250000,
+            "stock": 3,
+            "id": "1"
+          }
+        }
+      ]
     },
     {
-      "id": "ec65",
+      "id": "d5c0",
       "userId": "274f",
-      "productId": "5",
-      "quantity": 3
+      "total_price": 370000,
+      "tax": 37000,
+      "transaction_date": "2024-07-04T05:16:24.637Z",
+      "items": [
+        {
+          "id": "7189",
+          "userId": "274f",
+          "productId": "3",
+          "quantity": 2,
+          "product": {
+            "name": "Puma RS-X",
+            "price": 25000,
+            "stock": 2,
+            "image": "https://placehold.co/396x594",
+            "id": "3"
+          }
+        },
+        {
+          "id": "4515",
+          "userId": "274f",
+          "productId": "6",
+          "quantity": 2,
+          "product": {
+            "name": "Asics Gel-Kayano",
+            "image": "https://placehold.co/396x594",
+            "price": 160000,
+            "stock": 4,
+            "id": "6"
+          }
+        }
+      ]
     },
     {
-      "id": "a606",
+      "id": "2ad5",
       "userId": "274f",
-      "productId": "4",
-      "quantity": 1
+      "total_price": 1020000,
+      "tax": 102000,
+      "transaction_date": "2024-07-04T05:17:12.782Z",
+      "items": [
+        {
+          "id": "4515",
+          "userId": "274f",
+          "productId": "6",
+          "quantity": 2,
+          "product": {
+            "name": "Asics Gel-Kayano",
+            "image": "https://placehold.co/396x594",
+            "price": 160000,
+            "stock": 2,
+            "id": "6"
+          }
+        },
+        {
+          "id": "9853",
+          "userId": "274f",
+          "productId": "7",
+          "quantity": 10,
+          "product": {
+            "name": "Converse Chuck Taylor",
+            "image": "https://placehold.co/396x594",
+            "price": 70000,
+            "stock": 15,
+            "id": "7"
+          }
+        }
+      ]
     }
   ]
 }
