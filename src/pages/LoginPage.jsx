@@ -28,6 +28,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { axiosInstance } from "@/lib/axios";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { GuestPage } from "@/components/guard/GuestPage";
 
 const loginFormShcema = z.object({
   email: z
@@ -88,6 +89,7 @@ const LoginPage = () => {
           username: userResponse.data[0].username,
           email: userResponse.data[0].email,
           id: userResponse.data[0].id,
+          role: userResponse.data[0].role,
         },
       });
 
@@ -100,71 +102,73 @@ const LoginPage = () => {
   };
 
   return (
-    <main className="container py-8 flex flex-col justify-center items-center max-w-screen-md h-[80vh]">
-      <Form {...form}>
-        <form
-          className="w-full max-w-[540px] "
-          onSubmit={form.handleSubmit(handleLogin)}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Wellcome Back!</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-2">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
+    <GuestPage>
+      <main className="container py-8 flex flex-col justify-center items-center max-w-screen-md h-[80vh]">
+        <Form {...form}>
+          <form
+            className="w-full max-w-[540px] "
+            onSubmit={form.handleSubmit(handleLogin)}
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Wellcome Back!</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-2">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type={isChecked ? "text" : "password"}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Password must be at least 8 characters
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  onCheckedChange={(checked) => setIsChecked(checked)}
-                  id="show-password"
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                <Label htmlFor="show-password">Show Password</Label>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <div className="flex flex-col space-y-4 w-full">
-                <Button type="submit">Login</Button>
-                <Link className="w-full text-center" to="/register">
-                  Register
-                </Link>
-              </div>
-            </CardFooter>
-          </Card>
-        </form>
-      </Form>
-    </main>
+
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type={isChecked ? "text" : "password"}
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        Password must be at least 8 characters
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    onCheckedChange={(checked) => setIsChecked(checked)}
+                    id="show-password"
+                  />
+                  <Label htmlFor="show-password">Show Password</Label>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <div className="flex flex-col space-y-4 w-full">
+                  <Button type="submit">Login</Button>
+                  <Link className="w-full text-center" to="/register">
+                    Register
+                  </Link>
+                </div>
+              </CardFooter>
+            </Card>
+          </form>
+        </Form>
+      </main>
+    </GuestPage>
   );
 };
 

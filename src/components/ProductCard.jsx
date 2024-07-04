@@ -4,16 +4,77 @@ import { Button } from "./ui/button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { axiosInstance } from "@/lib/axios";
+import { useSelector, useDispatch } from "react-redux";
 
-export const ProductCard = ({ image, name, price, stock, id }) => {
-  // let quantity = 0;
-
-  // const [message, setMessage] = useState("add to cart");
-
+export const ProductCard = (props) => {
+  const { image, name, price, stock, id } = props;
   const [quantity, setQuantity] = useState(0);
 
-  const addToCart = () => {
-    setMessage("mantap");
+  const userSelector = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
+  const addToCart = async () => {
+    if (!userSelector.id) {
+      alert("Please login first");
+      return;
+    }
+
+    try {
+      const cartResponse = await axiosInstance.get("/carts", {
+        params: {
+          userId: userSelector.id,
+          _embed: "product",
+        },
+      });
+
+      const existingProduct = cartResponse.data.find((cart) => {
+        return cart.productId === id;
+      });
+
+      if (existingProduct) {
+        if (
+          existingProduct.quantity + quantity >
+          existingProduct.product.stock
+        ) {
+          alert("Quantity exceeds stock");
+          return;
+        }
+
+        await axiosInstance.patch(`/carts/${existingProduct.id}`, {
+          quantity: existingProduct.quantity + quantity,
+        });
+      } else {
+        await axiosInstance.post("/carts", {
+          userId: userSelector.id,
+          productId: id,
+          quantity: quantity,
+        });
+      }
+      alert("Added to cart");
+      fetchCart();
+    } catch (error) {
+      console.log("🚀 ~ addToCart ~ error:", error);
+    }
+  };
+
+  const fetchCart = async () => {
+    try {
+      const cartResponse = await axiosInstance.get("/carts", {
+        params: {
+          userId: userSelector.id,
+          _embed: "product",
+        },
+      });
+
+      dispatch({
+        type: "CART_GET",
+        payload: cartResponse.data,
+      });
+    } catch (error) {
+      console.log("🚀 ~ fetchCart ~ error:", error);
+    }
   };
 
   const incrementQuantity = () => {
@@ -71,7 +132,11 @@ export const ProductCard = ({ image, name, price, stock, id }) => {
           </Button>
         </div>
         {/* Button add to cart */}
-        <Button disabled={!stock} onClick={addToCart} className="w-full">
+        <Button
+          disabled={!stock || quantity < 1}
+          onClick={addToCart}
+          className="w-full"
+        >
           {stock > 0 ? "Add to cart" : "Out of stock"}
         </Button>
       </div>

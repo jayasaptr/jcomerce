@@ -25,7 +25,7 @@
       "name": "New Balance 574",
       "image": "https://placehold.co/396x594",
       "price": 110000,
-      "stock": 3,
+      "stock": 1,
       "id": "5"
     },
     {
@@ -76,7 +76,35 @@
       "id": "9cc5",
       "email": "admin@gmail.com",
       "username": "Muhammad Jaya Saputra",
-      "password": "12345678"
+      "password": "12345678",
+      "role": "admin"
+    },
+    {
+      "id": "274f",
+      "email": "lala@gmail.com",
+      "username": "Clara Maria Angelina Oraplean",
+      "password": "12345678",
+      "role": "user"
+    }
+  ],
+  "carts": [
+    {
+      "id": "b595",
+      "userId": "274f",
+      "productId": "1",
+      "quantity": 3
+    },
+    {
+      "id": "ec65",
+      "userId": "274f",
+      "productId": "5",
+      "quantity": 3
+    },
+    {
+      "id": "a606",
+      "userId": "274f",
+      "productId": "4",
+      "quantity": 1
     }
   ]
 }

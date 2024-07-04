@@ -1,3 +1,4 @@
+import { AdminPage } from "@/components/guard/AdminPage";
 import { AdminLayout } from "@/components/layouts/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -129,109 +130,109 @@ const ProductManagementPage = () => {
 
   return (
     <div>
-      <AdminLayout
-        title="Products Management"
-        description="Managing our products"
-        rightSection={
-          <div className="flex gap-2">
-            {selectedProductIds.length > 0 && (
-              <Button onClick={handleDeleteProduct} variant="destructive">
-                Delete {selectedProductIds.length} Prodcuts
-              </Button>
-            )}
+    <AdminLayout
+      title="Products Management"
+      description="Managing our products"
+      rightSection={
+        <div className="flex gap-2">
+          {selectedProductIds.length > 0 && (
+            <Button onClick={handleDeleteProduct} variant="destructive">
+              Delete {selectedProductIds.length} Prodcuts
+            </Button>
+          )}
 
-            <Link to="/admin/products/create">
-              <Button>
-                <IoAdd className="h-6 w-6 mr-2" />
-                Add Product
-              </Button>
-            </Link>
-          </div>
-        }
-      >
-        <div className="mb-8">
-          <Label>Search Product Name</Label>
-          <div className="flex gap-4">
-            <Input
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
-              className="max-w-[400px]"
-              placeholder="Search product"
-            />
-            <Button onClick={searchProducts}>Search</Button>
-          </div>
+          <Link to="/admin/products/create">
+            <Button>
+              <IoAdd className="h-6 w-6 mr-2" />
+              Add Product
+            </Button>
+          </Link>
         </div>
-        <Table className="p-4 border rounded-md">
-          <TableHeader>
-            <TableRow>
-              <TableHead></TableHead>
-              <TableHead>ID</TableHead>
-              <TableHead>Product Name</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>Stock</TableHead>
-              <TableHead></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {products.map((product) => {
-              return (
-                <TableRow>
-                  <TableCell>
-                    <Checkbox
-                      checked={selectedProductIds.includes(product.id)}
-                      onCheckedChange={(checked) =>
-                        handleOnCheckedProduct(product.id, checked)
-                      }
-                    />
-                  </TableCell>
-                  <TableCell>{product.id}</TableCell>
-                  <TableCell>{product.name}</TableCell>
-                  <TableCell>
-                    Rp.{product.price.toLocaleString("id-ID")}
-                  </TableCell>
-                  <TableCell>{product.stock}</TableCell>
-                  <TableCell>
-                    <Link to={"/admin/products/edit/" + product.id}>
-                      <Button variant="ghost" size="icon">
-                        <Edit className="w-6 h-6" />
-                      </Button>
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
+      }
+    >
+      <div className="mb-8">
+        <Label>Search Product Name</Label>
+        <div className="flex gap-4">
+          <Input
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
+            className="max-w-[400px]"
+            placeholder="Search product"
+          />
+          <Button onClick={searchProducts}>Search</Button>
+        </div>
+      </div>
+      <Table className="p-4 border rounded-md">
+        <TableHeader>
+          <TableRow>
+            <TableHead></TableHead>
+            <TableHead>ID</TableHead>
+            <TableHead>Product Name</TableHead>
+            <TableHead>Price</TableHead>
+            <TableHead>Stock</TableHead>
+            <TableHead></TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {products.map((product) => {
+            return (
+              <TableRow>
+                <TableCell>
+                  <Checkbox
+                    checked={selectedProductIds.includes(product.id)}
+                    onCheckedChange={(checked) =>
+                      handleOnCheckedProduct(product.id, checked)
+                    }
+                  />
+                </TableCell>
+                <TableCell>{product.id}</TableCell>
+                <TableCell>{product.name}</TableCell>
+                <TableCell>
+                  Rp.{product.price.toLocaleString("id-ID")}
+                </TableCell>
+                <TableCell>{product.stock}</TableCell>
+                <TableCell>
+                  <Link to={"/admin/products/edit/" + product.id}>
+                    <Button variant="ghost" size="icon">
+                      <Edit className="w-6 h-6" />
+                    </Button>
+                  </Link>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
 
-        <Pagination className="mt-8">
-          <PaginationContent>
-            <PaginationItem>
-              <Button
-                disabled={searchParams.get("page") == 1}
-                variant="ghost"
-                onClick={handlePrevPage}
-              >
-                <ChevronLeft className="w-6 h-6 mr-2" /> Previous
-              </Button>
-            </PaginationItem>
+      <Pagination className="mt-8">
+        <PaginationContent>
+          <PaginationItem>
+            <Button
+              disabled={searchParams.get("page") == 1}
+              variant="ghost"
+              onClick={handlePrevPage}
+            >
+              <ChevronLeft className="w-6 h-6 mr-2" /> Previous
+            </Button>
+          </PaginationItem>
 
-            <PaginationItem className="mx-8 font-semibold">
-              Page {searchParams.get("page")}
-            </PaginationItem>
+          <PaginationItem className="mx-8 font-semibold">
+            Page {searchParams.get("page")}
+          </PaginationItem>
 
-            <PaginationItem>
-              <Button
-                disabled={!nextPage}
-                variant="ghost"
-                onClick={handleNextPage}
-              >
-                Next <ChevronRight className="w-6 h-6 mls-2" />
-              </Button>
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </AdminLayout>
-    </div>
+          <PaginationItem>
+            <Button
+              disabled={!nextPage}
+              variant="ghost"
+              onClick={handleNextPage}
+            >
+              Next <ChevronRight className="w-6 h-6 mls-2" />
+            </Button>
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </AdminLayout>
+  </div>
   );
 };
 
