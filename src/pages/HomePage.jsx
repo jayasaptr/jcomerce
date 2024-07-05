@@ -48,7 +48,7 @@ const HomePage = () => {
             Become a trand-setter with us.
           </h1>
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
-            Jproject provides you with the finest clothings and ensures your
+            LStore provides you with the finest clothings and ensures your
             confidence throghout your days
           </p>
         </div>

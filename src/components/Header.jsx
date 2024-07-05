@@ -30,9 +30,7 @@ export const Header = () => {
   return (
     <header className="flex items-center justify-between px-8 py-4 border-b">
       <Link to="/">
-        <p className="font-bold text-2xl hover:cursor-pointer mr-2">
-          JProjectCommerce
-        </p>
+        <p className="font-bold text-2xl hover:cursor-pointer mr-2">LStore</p>
       </Link>
       <Input className="max-w-[600px]" placeholder="Search Product" />
       <div className="flex space-x-4 h-5 items-center">

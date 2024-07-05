@@ -103,7 +103,7 @@ const LoginPage = () => {
 
   return (
     <GuestPage>
-      <main className="container py-8 flex flex-col justify-center items-center max-w-screen-md h-[80vh]">
+      <main className="container py-8 flex flex-col justify-center items-center max-w-screen-md min-h-[80vh]">
         <Form {...form}>
           <form
             className="w-full max-w-[540px] "
