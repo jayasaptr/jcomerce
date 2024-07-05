@@ -2,14 +2,14 @@
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { IoCart, IoHeart } from "react-icons/io5";
+import { IoCart } from "react-icons/io5";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { axiosInstance } from "@/lib/axios";
 import { useEffect } from "react";
 import { fetchCart } from "@/services/cartService";
+import { History } from "lucide-react";
 
 export const Header = () => {
   const userSelector = useSelector((state) => state.user);
@@ -46,9 +46,11 @@ export const Header = () => {
             </Button>
           </Link>
 
-          <Button size="icon" variant="ghost">
-            <IoHeart className="h-6 w-6" />
-          </Button>
+          <Link to="/history">
+            <Button size="icon" variant="ghost">
+              <History className="h-6 w-6" />
+            </Button>
+          </Link>
         </div>
 
         <Separator orientation="vertical" className="h-full" />
