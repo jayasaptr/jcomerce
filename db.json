@@ -29,13 +29,6 @@
       "id": "5"
     },
     {
-      "name": "Asics Gel-Kayano",
-      "image": "https://placehold.co/396x594",
-      "price": 160000,
-      "stock": 0,
-      "id": "6"
-    },
-    {
       "name": "Converse Chuck Taylor",
       "image": "https://placehold.co/396x594",
       "price": 70000,
@@ -69,6 +62,13 @@
       "price": 85000,
       "stock": 9,
       "id": "11"
+    },
+    {
+      "name": "Nike JR 2",
+      "price": 200000,
+      "stock": 60,
+      "image": "https://placehold.co/396x594",
+      "id": "c161"
     }
   ],
   "users": [
@@ -83,6 +83,20 @@
       "id": "274f",
       "email": "lala@gmail.com",
       "username": "Clara Maria Angelina Oraplean",
+      "password": "12345678",
+      "role": "user"
+    },
+    {
+      "id": "a310",
+      "email": "clara@gmail.com",
+      "username": "lal",
+      "password": "12345678",
+      "role": "user"
+    },
+    {
+      "id": "d48e",
+      "email": "angelina@gmail.com",
+      "username": "angelina",
       "password": "12345678",
       "role": "user"
     }
